@@ -1,0 +1,32 @@
+{
+    "name": "Watch Videos App",
+    "short_name": "Watch Videos App",
+    "description": "Search and Watch the Videos using App.",
+    "icons": [
+        {
+          "src": "image/watch.png",
+          "sizes": "64x64 32x32 24x24 16x16",
+          "type": "image/x-icon"
+        },
+        {
+          "src": "image/watch.png",
+          "type": "image/png",
+          "sizes": "192x192"
+        },
+        {
+          "src": "image/watch.png",
+          "type": "image/png",
+          "sizes": "512x512"
+        },
+        {
+            "src": "image/watch.png",
+            "type": "image/png",
+            "sizes": "450x400"
+          }
+      ],
+    "start_url": "/index.html",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#007bff"
+  }
+  
