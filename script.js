@@ -30,10 +30,11 @@ async function fetchVideos(searchQuery, pageToken) {
         const videoPlayer = document.createElement('iframe');
         videoPlayer.setAttribute('width', '100%');
         videoPlayer.setAttribute('height', '315');
-        videoPlayer.setAttribute('src', `https://www.youtube.com/embed/${videoId}`); // Remove autoplay=1
+        videoPlayer.setAttribute('src', `https://www.youtube.com/embed/${videoId}?playsinline=1`); // Add playsinline attribute
         videoPlayer.setAttribute('frameborder', '0');
         videoPlayer.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
         videoPlayer.setAttribute('allowfullscreen', 'true');
+        
 
         const cardTitle = document.createElement('h5');
         cardTitle.classList.add('card-title');
