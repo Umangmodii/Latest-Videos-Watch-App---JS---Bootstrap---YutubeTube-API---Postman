@@ -2,12 +2,17 @@ let nextPageToken = ''; // Variable to store the next page token for pagination
 let prevPageToken = ''; // Variable to store the previous page token for pagination
 
 // Function to fetch YouTube videos based on search query and page token
+// Function to fetch YouTube videos based on search query and page token
 async function fetchVideos(searchQuery, pageToken) {
   try {
     const apiKey = 'AIzaSyBLE87lKlKH9_qMfEqfqa4z71OciXQVMtg'; // Replace with your actual API key
     const maxResults = 21; // Change this number as needed
 
     const response = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=${maxResults}&key=${apiKey}&q=${searchQuery}&pageToken=${pageToken}`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch videos');
+    }
+
     const data = await response.json();
 
     const videoCards = document.getElementById('videoCards');
@@ -34,7 +39,6 @@ async function fetchVideos(searchQuery, pageToken) {
         videoPlayer.setAttribute('frameborder', '0');
         videoPlayer.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
         videoPlayer.setAttribute('allowfullscreen', 'true');
-        
 
         const cardTitle = document.createElement('h5');
         cardTitle.classList.add('card-title');
@@ -69,8 +73,19 @@ async function fetchVideos(searchQuery, pageToken) {
     document.getElementById('searchQuerySpan').textContent = searchQuery;
   } catch (error) {
     console.error('Error fetching videos:', error);
+    // Display error message on UI
+    const videoCards = document.getElementById('videoCards');
+    videoCards.innerHTML = `
+      <div class="container d-flex justify-content-center">
+        <div class="alert alert-danger" role="alert">
+          Failed to fetch videos. Please try again later.
+        </div>
+      </div>`;
   }
-  }
+}  
+
+
+    
 
 // Function to update pagination visibility based on available tokens
 function updatePaginationVisibility() {
